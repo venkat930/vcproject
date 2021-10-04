@@ -3,14 +3,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('check out code') {
+            agent {
+                label 'Buildserver'
+            }   
             steps {
-                echo 'Hello World'
-            }
-        }
-        stage('Welcome') {
-            steps {
-                echo "Welcome to ${str}"
+                git credentialsId: 'githubcredentials', url: 'https://github.com/venkat930/vcproject.git'
             }
         }
     }
